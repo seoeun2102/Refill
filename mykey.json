@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "refill-station-71fb7",
+  "private_key_id": "119a43ae005128eba388c3cf8621eb8e58b35fa2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrbMufBJxm52oO\nMiHFdRnhP6/7AxuloaLCdOND6MZfnLW22h+ZWwraEV/clFrU0nzCJoqIFuFlZ32P\nOQh1TERafynBYMTkbqGhPsn7v6pfkEHWsKy+54ll9Vo4z0CldMzteC2FlVswX3BB\n1k+vMgxzQfHNvaKCNR5IO11XgqMToRPxWRTA50yuFngdqcvtiuKS8p8EGj/xOdo1\nbokCIc/MKbQSTAtCXHaa7KQwIFvBteeT9xVJFjIiC1P+GGqLiKcWPZItLOi9CJ0y\nedp1uu/iuH66E95fYiHBmy8w6lvyAgndc7HuxpfBbJkMzBIOwhhyepC5gZXahMo4\n1fmp5f9ZAgMBAAECggEAPGrZ0S/U18fT7zDoCinddy/1HCjaQ6QWMybzOmn+EJCw\n0sNJw8j8qCLbgGihIsUUx3DB/njh89VnwWS+gGji5mpPEyLCAiijuqrgkWPZ7lhv\ne/VEzPvZxx+ULtWM2UOzPjbPBHfBbekVLX8VEpA3JyAk0vh1ICMMizSxDzixtSbK\nBBKvI3EGjQQt5fpeA0HLKWEFK2O3bNnVCBbpzth5LxXhQz0x8VBnmj3H9+8uHVSX\nja3k4uNcsr3ayy63MIxcDyIdvGRzIL74xn2ub9aFhvoRNDhGl+Nk2cf00DyYabRU\nXQxrsFTvH7XolAkWn89wLE2bpL1piCCjnlnLGHazqQKBgQDmcRUGZVZaCPAkHzMX\nmMgW4GM74NdcKNijurZvHsYRgPxvFn737C1MZf3vfaQue/+q4B9eoVyliBijkBbC\nJ/Rv9N7Q2CwfdSs2PCmEYIQvgfV4SpePdkDXGcOtLM/BIcKk/mfbCVvub0G3bk6v\n2kBUy6kvJRzdlWdwaFWF1HxCgwKBgQC+cA3vNmQr945vA1wJzxl74qjDAMKxPKxK\nsi4dxRkcWcXQnqFqsFp3yDaF0YFc/a9xxBMXUHPt2CQPF0v/9FpVBCzN+8JN7vn1\nNcVuYfGCt2/ge7/XHxr8+LIsS9z5klQebut34e37N//ratLT7ll3RN3tjoehABYm\nSentK3cf8wKBgBpZt/PBRryI5RzcTHVYTRkAk5hXP4kUSqF+SjoupKt/ul3hjqc+\n5Hcl+oGWNl3yY+vgMPYbMYLkKx0Y7uFIvFTJBWmQLotyVHyhKIYwmyzriWw161rG\nROfT1GJLC36kI6PGS43qZg6/vh4BiRHmvRB1MWVoswJLgUaDR7RD9emNAoGBALXw\n7o8tgvSyliUfq44/i5Rdj2iG0HtugRj4NLECfqQkbKaM96CrjjNEWDrvV02VnUnu\nz2KF3cxNpN26H0URmkABNiExt4inma2ZSt/TuV5ujPeGo1kOgcVQgUFq1VqnX7CX\nvmWRt8E81kd/jp8l59nYNMNiWdgK8h5wnYqW7T/bAoGAHk2EHOKDO3i2WBIpDmne\nGebS1b8A0S71BhkTeWOVlXRmuVZgIHDC04uiaO+g3G2TDuXQh4HDdvBrPDuOYPik\nL8nA9PBWvXH9hQP2Gzkl5b0i6aDY6SF4FGpnUUiDIfKozKp/8wK+FTlmvaWVN8fW\neIfInqYrpb1DPIAZ/Rgcjjw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-absic@refill-station-71fb7.iam.gserviceaccount.com",
+  "client_id": "114739054390325601833",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-absic%40refill-station-71fb7.iam.gserviceaccount.com"
+}
