@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.input-form {
+  max-width: 680px;
+}
+
+.alert-success{
+  font-size: 80%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  color: green;
+}
+
+.alert-danger{
+  font-size: 80%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  color:red
+}

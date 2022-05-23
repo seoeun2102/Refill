@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <style>
+  </style>
+   <link href="Register.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <div class="input-form col-md-12 mx-auto">
+        <div class="text-center">
+          <a href="MainPage_NotLogIn.html">
+            <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/7273/7273632.png" width="72" height="72" alt="LogoImage">
+          </a>
+          <h1 class="h3 mb-3 w-normal">회원가입</h1>
+        </div>
+
+        <form class="validation-form" novalidate>
+
+          <div class="row">
+            <div class="mb-3"> <label for="id">아이디</label><span class="text-danger">*</span><input type="text" class="form-control" id="id" required>
+              <div class="invalid-feedback">아이디를 입력해주세요.</div>
+              <div class="mt-2 alert alert-danger" id="id-check">유효하지 않은 형식의 아이디 입니다.</div>
+            </div>
+
+            <div class="mb-3"> <label for="password">비밀번호</label><span class="text-danger">*</span><input type="password" class="form-control" id="password" required>
+              <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+            </div>
+
+            <div class="mb-3"> <label for="rePassword">비밀번호 확인</label><input type="password" class="form-control" id="rePassword" required>
+              <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+              <div class="mt-2 alert alert-success" id="pw-same-check-success">비밀번호가 일치합니다.</div> 
+              <div class="mt-2 alert alert-danger" id="pw-same-check-danger">비밀번호가 일치하지 않습니다.</div>
+            </div>
+
+            <div class="mb-3"> <label for="email">이메일</label><span class="text-danger">*</span><input type="text" class="form-control" id="email" required>
+              <div class="invalid-feedback">이메일을 입력해주세요.</div>
+              <div class="mt-2 alert alert-danger" id="email-check">유효하지 않은 형식의 이메일 입니다.</div>
+            </div>
+
+            <div class="mb-3"> <label for="name">이름</label><span class="text-danger">*</span><input type="text" class="form-control" id="name" value="" required>
+              <div class="invalid-feedback">이름을 입력해주세요.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="nickname">닉네임</label>
+              <input type="text" class="form-control" id="nickname">
+            </div>
+
+            <div class="mb-3"> <label for="phoneNumber">휴대폰 번호</label><span class="text-danger">*</span><input type="text" class="form-control" id="phoneNumber" placeholder="010-1234-5678" required>
+              <div class="invalid-feedback">휴대폰 번호를 입력해주세요.</div>
+              <div class="mt-2 alert alert-danger" id="phoneNumber-check">유효하지 않은 형식의 휴대폰 번호입니다.</div>
+            </div>
+
+          </div>
+
+          <div class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input"
+              id="aggrement" required> <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+
+          <div class="mb-4"></div> <button type="submit" class="btn btn-secondary btn-lg btn-block">가입 완료</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+  
+  <script>
+    // 빈칸 확인
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+
+    //아이디 유효성 확인
+    $(function(){ 
+      var idCheck = /^[a-z0-9_]{2,10}$/;
+      $("#id-check").hide();
+
+      $("input").keyup(function(){
+
+        var id=$("#id").val();
+
+        if(id != ""){
+          if(!idCheck.test(id))
+          {
+            $("#id-check").show();
+            $("#submit").removeAttr("disabled");
+          }
+          else{
+            $("#id-check").hide();
+          }
+        }
+        else{
+          $("#id-check").hide();
+        }
+      }); 
+    });
+
+    //비밀번호 확인
+    $(function(){ 
+      $("#pw-same-check-success").hide();
+      $("#pw-same-check-danger").hide();
+
+      $("input").keyup(function(){
+        var password=$("#password").val(); 
+        var rePassword=$("#rePassword").val();
+
+        if(password != "" || rePassword != ""){
+
+          if(password == rePassword){
+            $("#pw-same-check-success").show();
+            $("#pw-same-check-danger").hide();
+            $("#submit").removeAttr("disabled");
+          }
+          else{ 
+            $("#pw-same-check-success").hide(); 
+            $("#pw-same-check-danger").show();
+          } 
+        }
+        else{
+          $("#pw-same-check-success").hide();
+          $("#pw-same-check-danger").hide();
+        } 
+      }); 
+    });
+
+    //이메일 유효성 확인
+    $(function(){ 
+      var emailCheck = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      $("#email-check").hide();
+
+      $("input").keyup(function(){
+
+        var email=$("#email").val();
+
+        if(email != ""){
+          if(!emailCheck.test(email))
+          {
+            $("#email-check").show();
+            $("#submit").removeAttr("disabled");
+          }
+          else{
+            $("#email-check").hide();
+          }
+        }
+        else{
+          $("#email-check").hide();
+        }
+      }); 
+    });
+
+    //폰번호 유효성 확인
+    $(function(){ 
+      var phoneNumberCheck = /^\d{3}-\d{3,4}-\d{4}$/;
+      $("#phoneNumber-check").hide();
+
+      $("input").keyup(function(){
+
+        var phoneNumber=$("#phoneNumber").val();
+
+        if(phoneNumber != ""){
+          if(!phoneNumberCheck.test(phoneNumber))
+          {
+            $("#phoneNumber-check").show();
+            $("#submit").removeAttr("disabled");
+          }
+          else{
+            $("#phoneNumber-check").hide();
+          }
+        }
+        else{
+          $("#phoneNumber-check").hide();
+        }
+      }); 
+    });
+
+  </script>
+</body>
+
+</html>
