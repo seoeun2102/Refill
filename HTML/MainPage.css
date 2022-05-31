@@ -65,6 +65,19 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='grey' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
 
+
+.title{
+  text-align: center;
+  margin: 100px auto 50px;
+  font-size: 18px;
+  width: 150px;
+  border-bottom: 1px solid #ddd;
+}
+
+.listContainer {
+  margin: 0px auto 50px;
+}
+
 section {
   padding: 0px 0px;
 }

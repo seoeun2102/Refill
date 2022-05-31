@@ -40,15 +40,23 @@
   border-bottom: 1px solid #ddd;
 }
 
+.MapContainer {
+  margin: auto;
+  margin-bottom: 50px;
+}
+
 .ck.ck-editor {
   margin: auto;
   max-width: 1200px;
 }
 .ck-editor__editable {
   min-height: 450px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
+.btnContainer {
+  float: right;
+}
 section {
   padding: 0px 0px;
 }

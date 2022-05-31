@@ -10,6 +10,8 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
     id="bootstrap-css">
+
+  <script src="https://kit.fontawesome.com/ac5aee89b7.js" crossorigin="anonymous"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 
   <style>
@@ -73,18 +75,29 @@
     </div>
   </header>
   <!-- 상단바 종료 -->
+
   <div class="title">
     <strong>글쓰기</strong>
   </div>
 
-  <textarea name="content" id="editor"></textarea>
+  <!-- 컨테이너 시작 -->
+  <div class="MapContainer" style="width: 1200px;">
+    <!-- CKEditor 시작 -->
+    <textarea name="content" id="editor"></textarea>
     <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+          console.error(error);
+        });
     </script>
+    <!-- CKEditor 시작 -->
+    <div class="btnContainer">
+      <button type="button" class="btn btn-outline-secondary"><i class="fa fa-pencil"></i> 쓰기</button>
+      <button type="button" onclick="location.href='ReviewList.html'" class="btn btn-secondary">작성 취소</button>
+    </div>
+  </div>
+  <!-- 컨테이너 종료 -->
 
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3W0KeDu0QmoK67JmnQFN5EGEXFysinSU&callback=myMap"></script>

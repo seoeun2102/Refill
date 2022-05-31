@@ -41,7 +41,7 @@
 }
 
 .MapContainer {
-  margin: auto;
+  margin: 0 auto 100px;
 }
 
 .googleMap {
@@ -49,15 +49,19 @@
   margin-left: 30px;
 }
 
-.SearchBox{
+.searchBox{
   position: relative;
   float: right;
   margin-right: 30px;
 }
 
-.SearchResult{
+.searchBox form{
+  display: inline-block;
+  margin: auto;
+}
 
-  bottom: 0;
+.searchResult{
+  display: inline-block;
 }
 
 section {

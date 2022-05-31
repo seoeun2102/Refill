@@ -10,7 +10,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
     id="bootstrap-css">
-
+  <script src="https://kit.fontawesome.com/ac5aee89b7.js" crossorigin="anonymous"></script>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -32,8 +32,8 @@
 </head>
 
 <body>
-   <!-- 상단바 시작 -->
-   <header class="p-3 mb-3 border-bottom">
+  <!-- 상단바 시작 -->
+  <header class="p-3 mb-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="MainPage_LogIn.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -72,63 +72,64 @@
     </div>
   </header>
   <!-- 상단바 종료 -->
-    <!-- 타이틀 시작 -->
-    <div class="title">
-      <strong>커뮤니티</strong>
-    </div>
-    <!-- 타이틀 종료 -->
- <!--라스트 컨테이너 시작-->
- <div class="listContainer" style="width: 1200px;">
-  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-    <!--리스트 시작-->
-    <table class="table table-sm table-hover">
-      <thead>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회수</th>
-        <th>추천수</th>
-      </thead>
-      <tdody>
-        <tr>
-          <td>2</td>
-          <td>긴 제목 샘플 긴 제목 샘플 긴 제목 샘플 긴 제목 샘플</td>
-          <td>작성자 샘플</td>
-          <td>2022. 00. 00</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>짧은 제목 샘플</td>
-          <td>작성자 샘플</td>
-          <td>2022. 00. 00</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-      </tdody>
-    </table>
+  <!-- 타이틀 시작 -->
+  <div class="title">
+    <strong>커뮤니티</strong>
   </div>
-  <!--리스트 종료-->
-  <!-- 게시글 작성 버튼 시작-->
-  <button type="button" onclick="location.href='WritePost.html'" class="btn btn-outline-secondary btn-sm">글쓰기</button>
-  <!-- 게시글 작성 버튼 종료-->
-  <!--페이지 번호 시작-->
-  <ul class="pagination pagination-sm justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-  <!-- 페이지 번호 종료-->
-</div>
-<!--리스트 컨테이너 종료-->
+  <!-- 타이틀 종료 -->
+  <!--라스트 컨테이너 시작-->
+  <div class="listContainer" style="width: 1200px;">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <!--리스트 시작-->
+      <table class="table table-sm table-hover">
+        <thead>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
+          <th>추천수</th>
+        </thead>
+        <tdody>
+          <tr>
+            <td>2</td>
+            <td>긴 제목 샘플 긴 제목 샘플 긴 제목 샘플 긴 제목 샘플</td>
+            <td>작성자 샘플</td>
+            <td>2022. 00. 00</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>짧은 제목 샘플</td>
+            <td>작성자 샘플</td>
+            <td>2022. 00. 00</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tdody>
+      </table>
+    </div>
+    <!--리스트 종료-->
+    <!-- 게시글 작성 버튼 시작-->
+    <button type="button" onclick="location.href='WriteCommunity.html'" class="btn btn-outline-secondary btn-sm"><i
+        class="fa fa-pencil"></i> 글쓰기</button>
+    <!-- 게시글 작성 버튼 종료-->
+    <!--페이지 번호 시작-->
+    <ul class="pagination pagination-sm justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+    <!-- 페이지 번호 종료-->
+  </div>
+  <!--리스트 컨테이너 종료-->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3W0KeDu0QmoK67JmnQFN5EGEXFysinSU&callback=myMap"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
