@@ -11,6 +11,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
     id="bootstrap-css">
 
+  <script src="https://kit.fontawesome.com/ac5aee89b7.js" crossorigin="anonymous"></script>
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -31,7 +33,7 @@
 
 </head>
 
-<body onload="initialize()">
+<body>
   <!-- 상단바 시작 -->
   <header class="p-3 mb-3 border-bottom">
     <div class="container">
@@ -81,11 +83,16 @@
   <div class="MapContainer" style="width: 1200px; height: 700px">
     <div id="googleMap" class="googleMap" style="width: 500px; height: 500px;"></div>
     <div class="searchBox" style="width: 500px; ">
-      <form style="width: 450px;">
-        <input class="form-control" placeholder="지도 검색" aria-label="Search" id="addr1" name="address">
+      <form style="width: 420px;">
+        <input class="form-control" placeholder="지도 검색" aria-label="Search" id="AddrSearch" name="address">
       </form>
-      <button type="button" class="btn btn-outline-secondary btn-sm" style="height: 38px;" onclick='codeAddress();'>검색</button>
-      <div class="searchResult" style="width: 500px; height: 700px; background-color: beige;"> ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ </div>
+      <button type="button" class="btn btn-outline-secondary btn-sm" style="height: 38px;"
+        onclick='codeAddress()'>검색</button>
+      <!-- HTML5 GeoLocation 버튼-->
+      <button type="button" class="btn btn-outline-secondary btn-sm" style="height: 38px;"
+        onclick='codeGeoLocation()'><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+      <div class="searchResult" style="width: 500px; height: 700px;""> 
+      </div>
     </div>
   </div>
   <!-- 지도 컨테이너 종료 -->
@@ -99,24 +106,23 @@
     var marker = [];
     var geocoder;
     var geocodemarker = [];
-    var GreenIcon = new google.maps.MarkerImage(
-      "http://labs.google.com/ridefinder/images/mm_20_red.png",
-      new google.maps.Size(12, 20),
-      new google.maps.Point(0, 0),
-      new google.maps.Point(6, 20));
 
-    function initialize() {
-      var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
-      var myOptions = {
-        zoom: 10,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
-      geocoder = new google.maps.Geocoder();
-      google.maps.event.addListener(map, 'click', codeCoordinate);
+    var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
 
-    }
+    var addrOptions = {
+      zoom: 10,
+      center: latlng, //
+      mapTypeControl: false,
+      navigationControlOptions: {
+        style: google.maps.NavigationControlStyle.SMALL
+      },
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("googleMap"), addrOptions);
+    geocoder = new google.maps.Geocoder();
+    google.maps.event.addListener(map, 'click', codeCoordinate);
+
 
     function Setmarker(latLng) {
       if (marker.length > 0) {
@@ -128,11 +134,13 @@
 
       marker.push(new google.maps.Marker({
         position: latLng,
-        map: map
+        map: map,
+        title: "You are here!"
       }));
 
     }
 
+    //지도 검색
     function codeAddress(event) {
 
       if (geocodemarker.length > 0) {
@@ -144,7 +152,7 @@
         geocodemarker.length = 0;
       }
 
-      var address = document.getElementById("addr1").value;
+      var address = document.getElementById("AddrSearch").value;
 
       geocoder.geocode({ 'address': address }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -155,7 +163,6 @@
             geocodemarker.push(new google.maps.Marker({
               center: results[i].geometry.location,
               position: results[i].geometry.location,
-              icon: GreenIcon,
               map: map
 
             }));
@@ -180,6 +187,25 @@
           }
         }
       });
+    }
+
+    // GeoLocation
+    function codeGeoLocation() {
+      navigator.geolocation.getCurrentPosition(success);
+
+      function success(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        // alert(lat + " " + long + " 성공");
+
+        var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(coords);
+        map.setZoom(15);
+
+        //마커 추가
+      }
+
+
     }
 
   </script>
