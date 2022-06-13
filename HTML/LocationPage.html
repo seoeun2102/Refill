@@ -98,122 +98,466 @@
   <!-- 지도 컨테이너 종료 -->
 
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3W0KeDu0QmoK67JmnQFN5EGEXFysinSU&callback=myMap"></script>
+    src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyC3W0KeDu0QmoK67JmnQFN5EGEXFysinSU&callback=myMap">
+    </script>
 
-  <script type="text/javascript">
-    var map;
-    var infowindow = new google.maps.InfoWindow();
-    var marker = [];
-    var geocoder;
-    var geocodemarker = [];
+        <script type="text/javascript">
+          var jsonLocation = 'csvjson.json';
 
-    var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
+          $.getJSON(jsonLocation, function (data) {
+            $each(data, function (I, item) {
+              console.log(item.name);
+            });
+          });
 
-    var addrOptions = {
-      zoom: 10,
-      center: latlng, //
-      mapTypeControl: false,
-      navigationControlOptions: {
-        style: google.maps.NavigationControlStyle.SMALL
-      },
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+          var contentArray = [];
+          var iConArray = [];
+          var iterator = 0;
+          var markerArray = [];
+          var markers = [];
 
-    map = new google.maps.Map(document.getElementById("googleMap"), addrOptions);
-    geocoder = new google.maps.Geocoder();
-    google.maps.event.addListener(map, 'click', codeCoordinate);
+          contentArray[0] = "<a href=\"https://place.map.kakao.com/1691708338\"  target=\"_blank\">시리얼에코리필스테이션 롯데마트 제타플렉스점</a>";
+          contentArray[1] = "<a href=\"https://place.map.kakao.com/877295776\"  target=\"_blank\">아로마티카 제로스테이션</a>";
+          contentArray[2] = "<a href=\"https://place.map.kakao.com/818010399\"  target=\"_blank\">솝리필스테이션</a>";
+          contentArray[3] = "<a href=\"https://place.map.kakao.com/319864914\"  target=\"_blank\">알맹상점 리스테이션</a>";
+          contentArray[4] = "<a href=\"https://place.map.kakao.com/522079993\"  target=\"_blank\">포레슈 리필트럭</a>";
+          contentArray[5] = "<a href=\"https://place.map.kakao.com/747959487\"  target=\"_blank\">아모레퍼시픽 리필스테이션</a>";
+          contentArray[6] = "<a href=\"https://place.map.kakao.com/798194992\"  target=\"_blank\">푸른별상점</a>";
+          contentArray[7] = "<a href=\"https://place.map.kakao.com/73049410\"  target=\"_blank\">동네마당 배움</a>";
+          contentArray[8] = "<a href=\"https://place.map.kakao.com/1396145743\"  target=\"_blank\">가치가게</a>";
+          contentArray[9] = "<a href=\"https://place.map.kakao.com/1010659662\"  target=\"_blank\">싱글룸</a>";
+          contentArray[10] = "<a href=\"https://place.map.kakao.com/7516648\"  target=\"_blank\">아모레스토어 광교점</a>";
+          contentArray[11] = "<a href=\"https://place.map.kakao.com/1612804893\"  target=\"_blank\">지구에티켓</a>";
+          contentArray[12] = "<a href=\"https://place.map.kakao.com/1657989867\"  target=\"_blank\">그리니</a>";
+          contentArray[13] = "<a href=\"https://place.map.kakao.com/894167221\"  target=\"_blank\">마그앤그래</a>";
+          contentArray[14] = "<a href=\"https://place.map.kakao.com/2032046982\"  target=\"_blank\">지구인의놀이터</a>";
+          contentArray[15] = "<a href=\"https://place.map.kakao.com/1691708338\"  target=\"_blank\">시리얼에코리필스테이션 롯데마트 제타플렉스점</a>";
+          contentArray[16] = "<a href=\"https://place.map.kakao.com/877295776\"  target=\"_blank\">아로마티카 제로스테이션</a>";
+          contentArray[17] = "<a href=\"https://place.map.kakao.com/818010399\"  target=\"_blank\">솝리필스테이션</a>";
+          contentArray[18] = "<a href=\"https://place.map.kakao.com/319864914\"  target=\"_blank\">알맹상점 리스테이션</a>";
+          contentArray[19] = "<a href=\"https://place.map.kakao.com/522079993\"  target=\"_blank\">포레슈 리필트럭</a>";
+          contentArray[20] = "<a href=\"https://place.map.kakao.com/747959487\"  target=\"_blank\">아모레퍼시픽 리필스테이션</a>";
+          contentArray[21] = "<a href=\"https://place.map.kakao.com/798194992\"  target=\"_blank\">푸른별상점</a>";
+          contentArray[22] = "<a href=\"https://place.map.kakao.com/73049410\"  target=\"_blank\">동네마당 배움</a>";
+          contentArray[23] = "<a href=\"https://place.map.kakao.com/1396145743\"  target=\"_blank\">가치가게</a>";
+          contentArray[24] = "<a href=\"https://place.map.kakao.com/1010659662\"  target=\"_blank\">싱글룸</a>";
+          contentArray[25] = "<a href=\"https://place.map.kakao.com/7516648\"  target=\"_blank\">아모레스토어 광교점</a>";
+          contentArray[26] = "<a href=\"https://place.map.kakao.com/1612804893\"  target=\"_blank\">지구에티켓</a>";
+          contentArray[27] = "<a href=\"https://place.map.kakao.com/1657989867\"  target=\"_blank\">그리니</a>";
+          contentArray[28] = "<a href=\"https://place.map.kakao.com/894167221\"  target=\"_blank\">마그앤그래</a>";
+          contentArray[29] = "<a href=\"https://place.map.kakao.com/2032046982\"  target=\"_blank\">지구인의놀이터</a>";
+          contentArray[30] = "<a href=\"https://place.map.kakao.com/758597282\"  target=\"_blank\">동그라미리필러리</a>";
+          contentArray[31] = "<a href=\"https://place.map.kakao.com/1878496170\"  target=\"_blank\">더바디샵 강남대로점</a>";
+          contentArray[32] = "<a href=\"https://place.map.kakao.com/231104136\"  target=\"_blank\">지구랑마을이협동조합</a>";
+          contentArray[33] = "<a href=\"https://place.map.kakao.com/1771847437\"  target=\"_blank\">알맹상점</a>";
+          contentArray[34] = "<a href=\"https://place.map.kakao.com/1194499747\"  target=\"_blank\">슬기로운생활</a>";
+          contentArray[35] = "<a href=\"https://place.map.kakao.com/1569035240\"  target=\"_blank\">제로에이블</a>";
+          contentArray[36] = "<a href=\"https://place.map.kakao.com/1125460134\"  target=\"_blank\">무해공간</a>";
+          contentArray[37] = "<a href=\"https://place.map.kakao.com/687503977\"  target=\"_blank\">1.5도씨</a>";
+          contentArray[38] = "<a href=\"https://place.map.kakao.com/296815833\"  target=\"_blank\">덕분애제로웨이스트샵</a>";
+          contentArray[39] = "<a href=\"https://place.map.kakao.com/595025110\"  target=\"_blank\">지구샵 제로웨이스트홈 연남점</a>";
+          contentArray[40] = "<a href=\"https://place.map.kakao.com/1929283431\"  target=\"_blank\">소중한모든것</a>";
+          contentArray[41] = "<a href=\"https://place.map.kakao.com/1172951925\"  target=\"_blank\">에코파레트 민트</a>";
+          contentArray[42] = "<a href=\"https://place.map.kakao.com/1480755504\"  target=\"_blank\">보틀라운지</a>";
+          contentArray[43] = "<a href=\"https://place.map.kakao.com/1004699741\"  target=\"_blank\">마인띵스</a>";
+          contentArray[44] = "<a href=\"https://place.map.kakao.com/545799219\"  target=\"_blank\">송포어스</a>";
+          contentArray[45] = "<a href=\"https://place.map.kakao.com/1736421664\"  target=\"_blank\">카페엠</a>";
+          contentArray[46] = "<a href=\"https://place.map.kakao.com/1091579008\"  target=\"_blank\">허그어웨일</a>";
+          contentArray[47] = "<a href=\"https://place.map.kakao.com/2125933186\"  target=\"_blank\">디어에코</a>";
+          contentArray[48] = "<a href=\"https://place.map.kakao.com/896992720\"  target=\"_blank\">비그린 (휴업중)</a>";
+          contentArray[49] = "<a href=\"https://place.map.kakao.com/25906270\"  target=\"_blank\">터치포굿</a>";
+          contentArray[50] = "<a href=\"https://place.map.kakao.com/600906768\"  target=\"_blank\">세컨드페이지</a>";
+          contentArray[51] = "<a href=\"https://place.map.kakao.com/1569845082\"  target=\"_blank\">타이거릴리</a>";
+          contentArray[52] = "<a href=\"https://place.map.kakao.com/1133896366\"  target=\"_blank\">순환지구</a>";
+          contentArray[53] = "<a href=\"https://place.map.kakao.com/1276911496\"  target=\"_blank\">워시존 파주운정점</a>";
+          contentArray[54] = "<a href=\"https://place.map.kakao.com/667025106\"  target=\"_blank\">파주장단콩웰빙마루</a>";
+          contentArray[55] = "<a href=\"https://place.map.kakao.com/1792831802\"  target=\"_blank\">지구랑가게</a>";
+          contentArray[56] = "<a href=\"https://place.map.kakao.com/621549477\"  target=\"_blank\">제로띵스</a>";
+          contentArray[57] = "<a href=\"https://place.map.kakao.com/212648422\"  target=\"_blank\">공기</a>";
+          contentArray[58] = "<a href=\"https://place.map.kakao.com/1902537591\"  target=\"_blank\">브리타코리아</a>";
+          contentArray[59] = "<a href=\"https://place.map.kakao.com/225634945\"  target=\"_blank\">보탬상점</a>";
+          contentArray[60] = "<a href=\"https://place.map.kakao.com/163222874\"  target=\"_blank\">코뿔소책방</a>";
+          contentArray[61] = "<a href=\"https://place.map.kakao.com/1827098143\"  target=\"_blank\">산두로상점</a>";
+          contentArray[62] = "<a href=\"https://place.map.kakao.com/1764353221\"  target=\"_blank\">용기내 담아가게</a>";
+          contentArray[63] = "<a href=\"https://place.map.kakao.com/623392232\"  target=\"_blank\">가벼운오늘</a>";
+          contentArray[64] = "<a href=\"https://place.map.kakao.com/1502344872\"  target=\"_blank\">늘미곡</a>";
+          contentArray[65] = "<a href=\"https://place.map.kakao.com/2099145585\"  target=\"_blank\">게으른날</a>";
+          contentArray[66] = "<a href=\"https://place.map.kakao.com/909469171\"  target=\"_blank\">보틀앤스쿱</a>";
+          contentArray[67] = "<a href=\"https://place.map.kakao.com/746451145\"  target=\"_blank\">소우주</a>";
+          contentArray[68] = "<a href=\"https://place.map.kakao.com/1539693534\"  target=\"_blank\">비유비웰</a>";
+          contentArray[69] = "<a href=\"https://place.map.kakao.com/955713342\"  target=\"_blank\">굿바이마켓</a>";
+          contentArray[70] = "<a href=\"https://place.map.kakao.com/1134469561\"  target=\"_blank\">지구수호대 착한상점</a>";
+          contentArray[71] = "<a href=\"https://place.map.kakao.com/645545733\"  target=\"_blank\">자원순환 환장</a>";
+          contentArray[72] = "<a href=\"https://place.map.kakao.com/1082120753\"  target=\"_blank\">자연공간 숨</a>";
+          contentArray[73] = "<a href=\"https://place.map.kakao.com/2018408108\"  target=\"_blank\">채움소</a>";
+          contentArray[74] = "<a href=\"https://place.map.kakao.com/445711513\"  target=\"_blank\">에르마나스</a>";
+          contentArray[75] = "<a href=\"https://place.map.kakao.com/1659306127\"  target=\"_blank\">에코슬로우</a>";
+          contentArray[76] = "<a href=\"https://place.map.kakao.com/88866281\"  target=\"_blank\">셉틱탱크</a>";
+          contentArray[77] = "<a href=\"https://place.map.kakao.com/614343236\"  target=\"_blank\">살림가게</a>";
+          contentArray[78] = "<a href=\"https://place.map.kakao.com/1285630971\"  target=\"_blank\">동선나눔점방</a>";
+          contentArray[79] = "<a href=\"https://place.map.kakao.com/1942570179\"  target=\"_blank\">친한가게</a>";
+          contentArray[80] = "<a href=\"https://place.map.kakao.com/810102121\"  target=\"_blank\">코스메틱미아</a>";
+          contentArray[81] = "<a href=\"https://place.map.kakao.com/640712121\"  target=\"_blank\">요선당</a>";
+          contentArray[82] = "<a href=\"https://place.map.kakao.com/747187916\"  target=\"_blank\">로하스카페나비</a>";
+          contentArray[83] = "<a href=\"https://place.map.kakao.com/759690444\"  target=\"_blank\">봉트리하우스</a>";
+          contentArray[84] = "<a href=\"https://place.map.kakao.com/346387919\"  target=\"_blank\">춘천여성협동조합 마더센터</a>";
+          contentArray[85] = "<a href=\"https://place.map.kakao.com/1931586964\"  target=\"_blank\">더 커먼</a>";
+          contentArray[86] = "<a href=\"https://place.map.kakao.com/51141828\"  target=\"_blank\">제로스테이</a>";
+          contentArray[87] = "<a href=\"https://place.map.kakao.com/1797083669\"  target=\"_blank\">천연제작소</a>";
+          contentArray[88] = "<a href=\"https://place.map.kakao.com/1784620170\"  target=\"_blank\">타예르셀바</a>";
+          contentArray[89] = "<a href=\"https://place.map.kakao.com/2061889781\"  target=\"_blank\">내일상회</a>";
+          contentArray[90] = "<a href=\"https://place.map.kakao.com/746283357\"  target=\"_blank\">지구상점</a>";
+          contentArray[91] = "<a href=\"https://place.map.kakao.com/759634122\"  target=\"_blank\">노플라스틱카페</a>";
+          contentArray[92] = "<a href=\"https://place.map.kakao.com/1490894768\"  target=\"_blank\">마리앤하우스</a>";
+          contentArray[93] = "<a href=\"https://place.map.kakao.com/408541104\"  target=\"_blank\">아모레스토어 일광점</a>";
+          contentArray[94] = "<a href=\"https://place.map.kakao.com/743786455\"  target=\"_blank\">용기내요</a>";
+          contentArray[95] = "<a href=\"https://place.map.kakao.com/911140508\"  target=\"_blank\">안녕 지구야 상점</a>";
+          contentArray[96] = "<a href=\"https://place.map.kakao.com/1327306821\"  target=\"_blank\">제로웨이스트샵 비움</a>";
+          contentArray[97] = "<a href=\"https://place.map.kakao.com/746166808\"  target=\"_blank\">제로웨이스트상점 지구맑음</a>";
+          contentArray[98] = "<a href=\"https://place.map.kakao.com/573497641\"  target=\"_blank\">번지구</a>";
+          contentArray[99] = "<a href=\"https://place.map.kakao.com/322286925\"  target=\"_blank\">지구별가게</a>";
+          contentArray[100] = "<a href=\"https://place.map.kakao.com/1850696319\"  target=\"_blank\">핸드메이드라이프</a>";
+          contentArray[101] = "<a href=\"https://place.map.kakao.com/1983911638\"  target=\"_blank\">부워크</a>";
+          iConArray[0] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[1] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[2] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[3] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[4] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[5] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[6] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[7] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[8] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[9] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[10] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[11] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[12] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[13] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[14] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[15] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[16] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[17] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[18] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[19] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[20] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[21] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[22] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[23] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[24] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[25] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[26] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[27] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[28] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[29] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[30] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[31] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[32] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[33] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[34] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[35] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[36] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[37] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[38] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[39] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[40] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[41] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[42] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[43] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[44] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[45] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[46] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[47] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[48] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[49] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[50] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[51] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[52] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[53] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[54] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[55] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[56] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[57] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[58] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[59] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[60] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[61] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[62] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[63] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[64] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[65] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[66] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[67] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[68] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[69] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[70] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[71] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[72] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[73] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[74] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[75] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[76] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[77] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[78] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[79] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[80] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[81] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[82] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[83] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[84] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[85] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[86] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[87] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[88] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[89] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[90] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[91] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[92] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[93] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[94] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[95] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[96] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[97] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[98] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[99] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[100] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          iConArray[101] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+          markerArray[0] = new google.maps.LatLng(37.5112348, 127.0980274);
+          markerArray[1] = new google.maps.LatLng(37.5207424, 127.0194099);
+          markerArray[2] = new google.maps.LatLng(37.4502462, 127.1455402);
+          markerArray[3] = new google.maps.LatLng(37.555042, 126.9695336);
+          markerArray[4] = new google.maps.LatLng(37.6379309, 126.6825156);
+          markerArray[5] = new google.maps.LatLng(37.2744614, 127.0625326);
+          markerArray[6] = new google.maps.LatLng(36.8134495, 127.1772417);
+          markerArray[7] = new google.maps.LatLng(36.6322003, 127.4227825);
+          markerArray[8] = new google.maps.LatLng(37.2565946, 127.019574);
+          markerArray[9] = new google.maps.LatLng(36.6252363, 127.5091628);
+          markerArray[10] = new google.maps.LatLng(37.2744614, 127.0625326);
+          markerArray[11] = new google.maps.LatLng(37.1840608, 127.0434884);
+          markerArray[12] = new google.maps.LatLng(37.2975576, 126.9728063);
+          markerArray[13] = new google.maps.LatLng(37.2495651, 127.0373497);
+          markerArray[14] = new google.maps.LatLng(37.2832828, 127.0144702);
+          markerArray[15] = new google.maps.LatLng(37.5112348, 127.0980274);
+          markerArray[16] = new google.maps.LatLng(37.5207424, 127.0194099);
+          markerArray[17] = new google.maps.LatLng(37.4502462, 127.1455402);
+          markerArray[18] = new google.maps.LatLng(37.555042, 126.9695336);
+          markerArray[19] = new google.maps.LatLng(37.6379309, 126.6825156);
+          markerArray[20] = new google.maps.LatLng(37.2744614, 127.0625326);
+          markerArray[21] = new google.maps.LatLng(36.8134495, 127.1772417);
+          markerArray[22] = new google.maps.LatLng(36.6322003, 127.4227825);
+          markerArray[23] = new google.maps.LatLng(37.2565946, 127.019574);
+          markerArray[24] = new google.maps.LatLng(36.6252363, 127.5091628);
+          markerArray[25] = new google.maps.LatLng(37.2744614, 127.0625326);
+          markerArray[26] = new google.maps.LatLng(37.1840608, 127.0434884);
+          markerArray[27] = new google.maps.LatLng(37.2975576, 126.9728063);
+          markerArray[28] = new google.maps.LatLng(37.2495651, 127.0373497);
+          markerArray[29] = new google.maps.LatLng(37.2832828, 127.0144702);
+          markerArray[30] = new google.maps.LatLng(37.3906051, 127.0829021);
+          markerArray[31] = new google.maps.LatLng(37.5023817, 127.0250619);
+          markerArray[32] = new google.maps.LatLng(37.3904492, 127.2211135);
+          markerArray[33] = new google.maps.LatLng(37.557795, 126.9051067);
+          markerArray[34] = new google.maps.LatLng(37.4109463, 127.134612);
+          markerArray[35] = new google.maps.LatLng(37.40673, 126.9720744);
+          markerArray[36] = new google.maps.LatLng(37.4357054, 127.1419647);
+          markerArray[37] = new google.maps.LatLng(37.4835316, 126.9126295);
+          markerArray[38] = new google.maps.LatLng(37.5026258, 127.0229867);
+          markerArray[39] = new google.maps.LatLng(37.5645561, 126.9235021);
+          markerArray[40] = new google.maps.LatLng(37.4482446, 126.7039612);
+          markerArray[41] = new google.maps.LatLng(37.4784878, 126.8642888);
+          markerArray[42] = new google.maps.LatLng(37.5751488, 126.9284689);
+          markerArray[43] = new google.maps.LatLng(37.563957, 126.9903036);
+          markerArray[44] = new google.maps.LatLng(37.5334079, 127.1254609);
+          markerArray[45] = new google.maps.LatLng(37.5559764, 126.9064303);
+          markerArray[46] = new google.maps.LatLng(37.5526206, 126.848486);
+          markerArray[47] = new google.maps.LatLng(37.5412316, 127.093786);
+          markerArray[48] = new google.maps.LatLng(37.5129475, 126.9416654);
+          markerArray[49] = new google.maps.LatLng(37.5793997, 127.0172473);
+          markerArray[50] = new google.maps.LatLng(37.4948146, 127.1219124);
+          markerArray[51] = new google.maps.LatLng(37.5575337, 126.9042254);
+          markerArray[52] = new google.maps.LatLng(37.5947702, 127.0185684);
+          markerArray[53] = new google.maps.LatLng(37.7455648, 126.7231849);
+          markerArray[54] = new google.maps.LatLng(37.7750532, 126.6878648);
+          markerArray[55] = new google.maps.LatLng(37.6223528, 127.0592938);
+          markerArray[56] = new google.maps.LatLng(37.563957, 126.9903036);
+          markerArray[57] = new google.maps.LatLng(37.5510618, 127.1249265);
+          markerArray[58] = new google.maps.LatLng(37.5275201, 126.9689484);
+          markerArray[59] = new google.maps.LatLng(37.6012599, 127.0767947);
+          markerArray[60] = new google.maps.LatLng(37.6426035, 126.6787744);
+          markerArray[61] = new google.maps.LatLng(37.6673461, 126.7846891);
+          markerArray[62] = new google.maps.LatLng(37.586117, 127.213262);
+          markerArray[63] = new google.maps.LatLng(37.5086105, 126.7296573);
+          markerArray[64] = new google.maps.LatLng(35.8157844, 127.126403);
+          markerArray[65] = new google.maps.LatLng(37.4929003, 126.4975257);
+          markerArray[66] = new google.maps.LatLng(37.5545681, 126.9476228);
+          markerArray[67] = new google.maps.LatLng(35.8297779, 127.131726);
+          markerArray[68] = new google.maps.LatLng(37.5094857, 126.9605285);
+          markerArray[69] = new google.maps.LatLng(37.5231023, 126.9844401);
+          markerArray[70] = new google.maps.LatLng(37.5346322, 126.6566443);
+          markerArray[71] = new google.maps.LatLng(37.6275924, 127.0108288);
+          markerArray[72] = new google.maps.LatLng(37.5938829, 126.6758859);
+          markerArray[73] = new google.maps.LatLng(37.4863418, 126.5583362);
+          markerArray[74] = new google.maps.LatLng(37.3279776, 127.9428043);
+          markerArray[75] = new google.maps.LatLng(37.5459118, 126.918747);
+          markerArray[76] = new google.maps.LatLng(37.5959439, 126.9470149);
+          markerArray[77] = new google.maps.LatLng(37.7391692, 127.0442241);
+          markerArray[78] = new google.maps.LatLng(37.5939411, 127.0203945);
+          markerArray[79] = new google.maps.LatLng(37.6551152, 127.2479246);
+          markerArray[80] = new google.maps.LatLng(37.583761, 126.9224523);
+          markerArray[81] = new google.maps.LatLng(37.8823589, 127.7264838);
+          markerArray[82] = new google.maps.LatLng(37.8421604, 127.7135411);
+          markerArray[83] = new google.maps.LatLng(37.8847783, 127.7246195);
+          markerArray[84] = new google.maps.LatLng(37.8777296, 127.7496518);
+          markerArray[85] = new google.maps.LatLng(35.8686215, 128.6117302);
+          markerArray[86] = new google.maps.LatLng(35.8193337, 128.5223126);
+          markerArray[87] = new google.maps.LatLng(35.2108361, 129.010543);
+          markerArray[88] = new google.maps.LatLng(35.8133557, 128.5236534);
+          markerArray[89] = new google.maps.LatLng(37.760601, 128.9075229);
+          markerArray[90] = new google.maps.LatLng(35.0160601, 126.7107572);
+          markerArray[91] = new google.maps.LatLng(34.9500809, 127.4854295);
+          markerArray[92] = new google.maps.LatLng(35.1969107, 128.5678853);
+          markerArray[93] = new google.maps.LatLng(35.2641742, 129.2224695);
+          markerArray[94] = new google.maps.LatLng(35.8101689, 128.7595143);
+          markerArray[95] = new google.maps.LatLng(35.1759257, 128.8020861);
+          markerArray[96] = new google.maps.LatLng(35.2434715, 128.5003201);
+          markerArray[97] = new google.maps.LatLng(35.5404833, 129.3385737);
+          markerArray[98] = new google.maps.LatLng(35.1541817, 128.7099631);
+          markerArray[99] = new google.maps.LatLng(33.4926193, 126.4753823);
+          markerArray[101] = new google.maps.LatLng(33.3414039, 126.1898997);
+          markerArray[100] = new google.maps.LatLng(33.2241084, 126.2617823);
 
+          var map;
+          var infowindow = new google.maps.InfoWindow();
+          var marker = [];
+          var geocoder;
+          var geocodemarker = [];
 
-    function Setmarker(latLng) {
-      if (marker.length > 0) {
-        marker[0].setMap(null);
-      }
+          var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
 
-      marker = [];
-      marker.length = 0;
+          var mapOptions = {
+            zoom: 10,
+            center: latlng, //
+            mapTypeControl: false,
+            navigationControlOptions: {
+              style: google.maps.NavigationControlStyle.SMALL
+            },
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
 
-      marker.push(new google.maps.Marker({
-        position: latLng,
-        map: map,
-        title: "You are here!"
-      }));
+          map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+          for (var i = 0; i < markerArray.length; i++) {
+            addMarker();
+          }
+          geocoder = new google.maps.Geocoder();
+          google.maps.event.addListener(map, 'click', codeCoordinate);
 
-    }
+          function Setmarker(latLng) {
+            if (marker.length > 0) {
+              marker[0].setMap(null);
+            }
 
-    //지도 검색
-    function codeAddress(event) {
+            marker = [];
+            marker.length = 0;
 
-      if (geocodemarker.length > 0) {
-        for (var i = 0; i < geocodemarker.length; i++) {
-          geocodemarker[i].setMap(null);
-
-        }
-        geocodemarker = [];
-        geocodemarker.length = 0;
-      }
-
-      var address = document.getElementById("AddrSearch").value;
-
-      geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          alert(results.length + "개의 결과를 찾았습니다.");
-
-          for (var i = 0; i < results.length; i++) {
-            map.setCenter(results[i].geometry.location);
-            geocodemarker.push(new google.maps.Marker({
-              center: results[i].geometry.location,
-              position: results[i].geometry.location,
-              map: map
-
+            marker.push(new google.maps.Marker({
+              position: latLng,
+              map: map,
+              title: "You are here!"
             }));
+
           }
 
-        }
-        else {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
-    }
+          //지도 검색
+          function codeAddress(event) {
 
-    function codeCoordinate(event) {
-      Setmarker(event.latLng);
+            if (geocodemarker.length > 0) {
+              for (var i = 0; i < geocodemarker.length; i++) {
+                geocodemarker[i].setMap(null);
 
-      geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {
+              }
+              geocodemarker = [];
+              geocodemarker.length = 0;
+            }
 
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[1]) {
-            infowindow.setContent(results[1].formatted_address);
-            infowindow.open(map, marker[0]);
+            var address = document.getElementById("AddrSearch").value;
+
+            geocoder.geocode({ 'address': address }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                alert(results.length + "개의 결과를 찾았습니다.");
+
+                for (var i = 0; i < results.length; i++) {
+                  map.setCenter(results[i].geometry.location);
+                  geocodemarker.push(new google.maps.Marker({
+                    center: results[i].geometry.location,
+                    position: results[i].geometry.location,
+                    map: map
+
+                  }));
+                }
+
+              }
+              else {
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+            });
           }
-        }
-      });
-    }
 
-    // GeoLocation
-    function codeGeoLocation() {
-      navigator.geolocation.getCurrentPosition(success);
+          function codeCoordinate(event) {
+            Setmarker(event.latLng);
 
-      function success(position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        // alert(lat + " " + long + " 성공");
+            geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {
 
-        var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map.setCenter(coords);
-        map.setZoom(15);
+              if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+                  infowindow.setContent(results[1].formatted_address);
+                  infowindow.open(map, marker[0]);
+                }
+              }
+            });
+          }
 
-        //마커 추가
-      }
+          // GeoLocation
+          function codeGeoLocation() {
+            navigator.geolocation.getCurrentPosition(success);
 
+            function success(position) {
+              var lat = position.coords.latitude;
+              var long = position.coords.longitude;
+              // alert(lat + " " + long + " 성공");
 
-    }
+              var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              map.setCenter(coords);
+              map.setZoom(10);
+            }
 
-  </script>
+          }
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+          //마커
+          function addMarker() {
+
+            var marker = new google.maps.Marker({
+              position: markerArray[iterator],
+              map: map,
+              draggable: false,
+              icon: iConArray[iterator]
+            });
+            markers.push(marker);
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentArray[iterator]
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+              infowindow.open(map, marker);
+            });
+            iterator++;
+          }
+
+          google.maps.event.addDomListener(window, 'load', mapOptions);
+
+        </script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous"></script>
 
 </body>
 
