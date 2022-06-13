@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
     rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="main.css" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -22,20 +23,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
   <!-- Calendar lib. Flatpickr. Only for Index -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
   <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 
- 
 </head>
-
 
 <body class="d-flex flex-column h-100 ">
   <!-- 상단바 시작 -->
-  <header class="p-3 mb-3 border-bottom">
+  <header >
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -45,20 +43,16 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="MainPage_LogIn.html" class="nav-link mr-3 px-3 link-secondary">Home</a></li>
-          <li><a href="LocationPage.html" class="nav-link px-2 link-dark">위치 및 예약</a></li>
+          <li><a href="LocationPage.html" class="nav-link px-2 link-dark">위치</a></li>
+          <li><a href="Reservation.html" class="nav-link px-2 link-dark">예약</a></li>
           <li><a href="ReviewList.html" class="nav-link px-2 link-dark">리뷰</a></li>
           <li><a href="Community.html" class="nav-link px-2 link-dark">커뮤니티</a></li>
+           <li><a href="upload.html" class="nav-link px-2 link-dark">등록</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="searchAll" class="form-control" placeholder="검색" aria-label="Search">
         </form>
-
-        <div class="text-end">
-          <button type="button" onclick="location.href='LogIn.html'" class="btn btn-outline-secondary me-2">로그인</button>
-          <button type="button" onclick="location.href='RegisterChoose.html'" class="btn btn-secondary">회원가입</button>
-        </div>
-
       </div>
     </div>
   </header>
@@ -68,7 +62,6 @@
     </nav>
   </header>
       
-  <div class="container mt-3"></div>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -76,7 +69,7 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <script src="main.css"></script>
 
   <script>
   const firebaseConfig = {
@@ -99,29 +92,33 @@
       결과.forEach((doc)=>{
       console.log(doc.data());
       var 상점 = `
-      <div class = "flex-grow-1 p-4">
-      <h5 class="shop">${doc.data().상점명}</h5>
+       <div class="shop">
+      <div class ="flex-grow-1 p-4">
+      <h5 class="shopName">${doc.data().상점명}</h5>
       <p class="address">${doc.data().주소}</p>
-      <p class="time">${doc.data().영업시간}</p>
-      <p class="detail">${doc.data().상세설명}</p>
+      <p class="time">영업시간: ${doc.data().영업시간}</p>
+      <p class="shopDetail">${doc.data().상세설명}</p>
         `;
       $('.container').append(상점)
     })
   })
 
-  db.collection('Product').get().then((결과)=>{
+db.collection('Product').get().then((결과)=>{
   결과.forEach((doc)=>{
   console.log(doc.data());
   var 상품 = `
-  <div class ="flex-grow-1 p-4">
-  <h5 class="product">${doc.data().상품명}</h5>
-  <p class="price">${doc.data().가격}</p>
-  <p class="detail">${doc.data().상품설명}</p>
+  <div class="product">
+    <div class="thumbnail" style="background-image: url('${doc.data().이미지}')"></div>
+    <div class="flex-grow-1 p-4">
+      <h5 class="productName"><a href="/detail.html?id=${doc.id}">${doc.data().상품명}</a></h5>
+      <p class="price">${doc.data().가격}원</p>
+    </div>
+  </div>
+</div>
     `;
   $('.container').append(상품)
   })
 })
-
 </script>
 
       <ul class="nav nav-pills nav-justified my-5" id="pills-tab" role="tablist">
@@ -146,8 +143,7 @@
               
               <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action" id="list-home-list" data-bs-toggle="list"
-                  href="#list-home" role="tab" aria-controls="home" onclick="select_seat($(this).attr('id'))">시간 선택</a>
-                
+                  href="#list-home" role="tab" aria-controls="home" onclick="select_seat($(this).attr('id'))">예약 시간</a>
               </div>
             </div>
           </thead>
@@ -158,32 +154,29 @@
                   <div class="row">
                     <div class="col-lg-4 second_column" id="">
                       <div id="show_cal" class="d-none">
-                        
                         <input type="text" id="calendar-oneday" class="calendars">
                       </div>                     
                       <div id="show_hour" class="d-none mb-3">
                         <h4 class="ui dividing header mt-3">상품 선택</h4>
                         <button class="ui tertiary button" onclick="select_hour($(this).attr('id'))"
-                          id="h1">1시간</button>
+                          id="h1">고체 치약</button>
                         <button class="ui tertiary button" onclick="select_hour($(this).attr('id'))"
-                          id="h1">1시간</button>
+                          id="h2">샴푸바</button>
                         <button class="ui tertiary button" onclick="select_hour($(this).attr('id'))"
-                          id="h1">1시간</button>
+                          id="h3">컨디셔너바</button>
+                        <button class="ui tertiary button" onclick="select_hour($(this).attr('id'))"
+                          id="h4">대나무 칫솔</button>
                       </div>
                     </div>
 
-
                     <div class="col-lg-8  d-none" id="show_seat">
                       <h5 class="ui dividing header">수량 선택</h5>
-                      <div class="">
                         <div class="tab-content" id="v-pills-tabContent">
                           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab">
-                            
+                            aria-labelledby="v-pills-profile-tab"> 
                           </div>
                           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                             aria-labelledby="v-pills-messages-tab">
-                          
                           </div>
                           <div class="tab-pane fade show active" id="v-pills-settings" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">
@@ -191,8 +184,8 @@
                               id="s-radio">
                               <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="1">
                               <label class="btn btn-outline-dark mr-3" for="btnradio1"> 1개 </label>
-                              <label class="btn btn-outline-dark mr-3" for="btnradio1"> 2개 </label>
-                              <label class="btn btn-outline-dark mr-3" for="btnradio1"> 3개 </label>
+                              <label class="btn btn-outline-dark mr-3" for="btnradio2"> 2개 </label>
+                              <label class="btn btn-outline-dark mr-3" for="btnradio3"> 3개 </label>
                           </div>
                         </div>
 
@@ -207,27 +200,22 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">..2.
-                </div>
-                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">.3..
-                </div>
               </div>
             </div>
           </div>
         </div>   
       </div>
+
+     <!-- 예약 내역 박스 -->
       <div class="ui black segment my-5 full-width d-none" id="pay-box">
         <div class="pays">
-          <h1 class="ui header">예약</h1>
+          <h1 class="ui header"><a href="/User_Reservation.html">예약</a></h1>
           <div id="pay-detail-s" class="pay">
-            <span id="select_seat" class="category c-text fs-5"></span>
-            <span id="_seat" class="category c-text fs-5">&nbsp;</span>
+            <span id="select_seat" class="category c-text fs-5"></span> &nbsp;
+            <span id="select_date" class="fw-light text-secondary"></span> &nbsp; &nbsp;
             <span id="select_hour" class="duration fw-bold"></span> &nbsp;
-            <span id="select_date" class="fw-light text-secondary"></span>
-           
-            &nbsp; &nbsp; &nbsp; &nbsp;
+            <a><span id="_seat" class="category c-text fs-5"></span>개</a>
           </div>
-        </p>
       </div>
   </main>
 
@@ -242,8 +230,9 @@
 
   <script src="./Reservation.js"></script>
   <script src="./Reservation.css"></script>
- 
+
   <script>
+    // 날짜 선택 
     $("#calendar-oneday").change(function () {
       document.getElementById("select_date").textContent = $('#calendar-oneday').val();
       document.getElementById("show_hour").classList.remove("d-none");
@@ -251,7 +240,6 @@
 
     $("#calendar-range").change(function () {
       document.getElementById("select_days_locker").textContent = $('#calendar-range').val();
-      document.getElementById("show_locker").classList.remove("d-none");
     });
 
     flatpickr('#calendar-range', {
@@ -274,21 +262,12 @@
       }
     });
 
+    // 수량 선택
     $("#s-radio").change(function () {
-      document.getElementById("_seat").textContent = $("input[type='radio'][name='btnradio']:checked").val() + '번 좌석';
+      document.getElementById("_seat").textContent = $("input[type='radio'][name='btnradio']:checked").val();
  
       show_pay_box();
     });
-
-    $("#l-radio").change(function () {
-      document.getElementById("_locker_num").textContent = $("input[type='radio'][name='locker-radio']:checked").val() + '번';
-      show_pay_box();
-    });
-
-    var myCarousel = document.querySelector('#myCarousel')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-      interval: 0
-    })
   </script>
 </body>
 </html>
